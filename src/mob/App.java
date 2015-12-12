@@ -3,6 +3,7 @@ package mob;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import mob.model.Information;
 import mob.controller.Controller;
 import javax.swing.SwingUtilities;
@@ -23,18 +24,27 @@ public class App {
                 try {
                     mainframe = new  MainFrame();
                 } catch (IOException ex) {
-                    System.out.println("Io Error "+ ex.getMessage());
+                 //   System.out.println("Io Error "+ ex.getMessage());
+                  JOptionPane.showMessageDialog(null,ex.getMessage(),
+                          "IO ERROR",JOptionPane.ERROR_MESSAGE );
                 } catch (SQLException ex) {
-                    System.out.println("SQL Error "+ ex.getMessage());
+                  //  System.out.println("SQL Error "+ ex.getMessage());
+                   JOptionPane.showMessageDialog(null,ex.getMessage(),
+                           "SQL ERROR",JOptionPane.ERROR_MESSAGE );
               }
                 Information info = new Information(); 
                 Controller controller = null;
               try {
                   controller = new Controller(info,mainframe);
               } catch (IOException ex) {
-                   System.out.println("Io Error "+ ex.getMessage());
+                 //  System.out.println("Io Error! "+ ex.getMessage());
+                    JOptionPane.showMessageDialog(null,ex.getMessage(),
+                          "IO ERROR",JOptionPane.ERROR_MESSAGE );
+                 
               } catch (SQLException ex) {
-                  System.out.println("SQL Error "+ ex.getMessage());
+                //  System.out.println("SQL Error! "+ ex.getMessage());
+                 JOptionPane.showMessageDialog(null,ex.getMessage(),
+                         "SQL ERROR",JOptionPane.ERROR_MESSAGE );
               }
                 
               controller.contol();
