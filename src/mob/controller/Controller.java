@@ -108,9 +108,8 @@ public class Controller {
       } 
       else { 
           
-           System.out.println(mainFrame.getQueryPanel1().getServiceListCombobox().getSelectedIndex());
-           
-           
+                   
+         
           ReportList[] reportList = new ReportList[reportListArray.size()];
           reportList = reportListArray.toArray(reportList);
           ServiceCode = Integer.parseInt(reportList[mainFrame.getQueryPanel1().getServiceListCombobox().getSelectedIndex()].getServiceCode());
@@ -143,22 +142,19 @@ public class Controller {
 
         private void fillComboBox() throws SQLException, IOException{
     
-       reportListArray = new ArrayList<>();
-       database.getReportList( reportListArray );
+        reportListArray = new ArrayList<>();
+        database.getReportList( reportListArray );
         ReportList[] reportList = new ReportList[reportListArray.size()];
         reportList = reportListArray.toArray(reportList);
      
             for(ReportList r : reportList){
             
-                mainFrame.getQueryPanel1().getServiceListModel().addElement(r.getServiceName());
+                mainFrame.getQueryPanel1().getServiceListCombobox().addItem(r.getServiceName());
                 
                  }
             
-               mainFrame.getQueryPanel1().getServiceListCombobox().
-                            setModel( mainFrame.getQueryPanel1().getServiceListModel());
-               mainFrame.getQueryPanel1().getServiceListCombobox().setSelectedIndex(0);
-           
-        
+                 mainFrame.getQueryPanel1().getServiceListCombobox().setSelectedIndex(0);
+          
         
         }
         

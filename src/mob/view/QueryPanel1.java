@@ -9,7 +9,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -26,7 +25,7 @@ public class QueryPanel1 extends JPanel {
     private  JFormattedTextField msisdnTextFeild;
     private  JButton querybtn;
     private  JComboBox serviceListCombobox;
-    private  DefaultComboBoxModel serviceListModel ;
+
 
     
 
@@ -40,7 +39,6 @@ public class QueryPanel1 extends JPanel {
         querybtn    = new JButton("Query");
         serviceListCombobox =  new JComboBox();
   
-        serviceListModel = new DefaultComboBoxModel();
         
       
         ////// Formatted text //////
@@ -89,15 +87,6 @@ public class QueryPanel1 extends JPanel {
             }
          
             
-
-
-            public DefaultComboBoxModel getServiceListModel() {
-                return serviceListModel;
-            }
-
-            public void setServiceListModel(DefaultComboBoxModel serviceListModel) {
-                this.serviceListModel = serviceListModel;
-            }
 
             public JComboBox getServiceListCombobox() {
                 return serviceListCombobox;

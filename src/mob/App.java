@@ -38,7 +38,7 @@ public class App {
               }
                 
               controller.contol();
-            
+
             }
         });
     }
