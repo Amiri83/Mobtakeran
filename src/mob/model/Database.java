@@ -87,8 +87,7 @@ public class Database {
                          setServiceName(rs.getString("ServiceName"));
                         int SubStatus0 = rs.getInt("SubStatus");
                         if (SubStatus0 == 1) {
-                            setSubStatus("Active");
-                            //controller.SubStatus = "Active";
+                            setSubStatus("Active");                  
                         } else {
                              setSubStatus("Deactive");
                             
