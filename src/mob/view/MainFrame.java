@@ -22,7 +22,7 @@ import javax.swing.KeyStroke;
 
 
 
-
+// Main View controller , All view componenets  comunications will controll here 
 
 public class MainFrame extends JFrame  {
     
@@ -30,9 +30,9 @@ public class MainFrame extends JFrame  {
     private  FormPanel formPanel;
     private  int comboxIndex ;
     private  JFileChooser fileChooser;
-    private  QueryPanel0 queryPanel0;
-    private  QueryPanel1 queryPanel1 ;
-    private  QueryPanel2 queryPanel2 ;
+    private  ReportPanel0 queryPanel0;
+    private  ReportPanel1 queryPanel1 ;
+    private  ReportPanel2 queryPanel2 ;
     private  TablePanel  tablePanel;
     private  InfoFileFilter filter;
   
@@ -155,11 +155,11 @@ public class MainFrame extends JFrame  {
        setLayout    (new BorderLayout());
    
        formPanel   = new FormPanel();
-       queryPanel0 = new QueryPanel0();
+       queryPanel0 = new ReportPanel0();
        fileChooser = new JFileChooser();
-       queryPanel0 = new QueryPanel0();
-       queryPanel1 = new QueryPanel1();
-       queryPanel2 = new QueryPanel2();
+       queryPanel0 = new ReportPanel0();
+       queryPanel1 = new ReportPanel1();
+       queryPanel2 = new ReportPanel2();
        tablePanel  = new TablePanel() ;
        filter      = new InfoFileFilter();
     
@@ -200,15 +200,15 @@ public class MainFrame extends JFrame  {
     
   /////////////////////// Setter And getters /////////////////////////////////  
     
-    public QueryPanel0 getQueryPanel0() {
+    public ReportPanel0 getQueryPanel0() {
         return queryPanel0;
     }
 
-    public QueryPanel1 getQueryPanel1() {
+    public ReportPanel1 getQueryPanel1() {
         return queryPanel1;
     }
 
-    public QueryPanel2 getQueryPanel2() {
+    public ReportPanel2 getQueryPanel2() {
         return queryPanel2;
     }
 

@@ -1,6 +1,7 @@
 
 package mob.view;
 
+// used by filefilter class 
 public class Utiles {
 
     public static String getFileExtension (String name){

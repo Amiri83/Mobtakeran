@@ -9,12 +9,17 @@ import mob.controller.Controller;
 import javax.swing.SwingUtilities;
 import mob.view.MainFrame;
 
-///989123154826  989123662860
-//R06 <--- this is added to check netbeans 
+
+/*
+      Main App program  Based on MVC pattern 
+      to test program you can use this numbers : 
+      989123154826  989123662860
+*/
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws Exception{
+       
         SwingUtilities.invokeLater(new Runnable() {
           MainFrame mainframe = null; 
           
@@ -22,32 +27,32 @@ public class App {
             public void run() {
              
                 try {
-                    mainframe = new  MainFrame();
+                    mainframe = new  MainFrame(); // <<-- View  Object
                 } catch (IOException ex) {
-                 //   System.out.println("Io Error "+ ex.getMessage());
+              
                   JOptionPane.showMessageDialog(null,ex.getMessage(),
                           "IO ERROR",JOptionPane.ERROR_MESSAGE );
                 } catch (SQLException ex) {
-                  //  System.out.println("SQL Error "+ ex.getMessage());
+          
                    JOptionPane.showMessageDialog(null,ex.getMessage(),
                            "SQL ERROR",JOptionPane.ERROR_MESSAGE );
               }
-                Information info = new Information(); 
-                Controller controller = null;
+                Information info = new Information();  // <<-- Model Object
+                Controller controller = null;         //  <<-- Controller Object
               try {
-                  controller = new Controller(info,mainframe);
+                  controller = new Controller(info,mainframe);     // <<-- passing object
               } catch (IOException ex) {
-                 //  System.out.println("Io Error! "+ ex.getMessage());
+               
                     JOptionPane.showMessageDialog(null,ex.getMessage(),
                           "IO ERROR",JOptionPane.ERROR_MESSAGE );
                  
               } catch (SQLException ex) {
-                //  System.out.println("SQL Error! "+ ex.getMessage());
+             
                  JOptionPane.showMessageDialog(null,ex.getMessage(),
                          "SQL ERROR",JOptionPane.ERROR_MESSAGE );
               }
                 
-              controller.contol();
+              controller.contol();  // <<-- Controller perfomes controll
 
             }
         });

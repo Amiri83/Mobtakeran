@@ -19,7 +19,7 @@ import javax.swing.border.Border;
 
 
 
-public class QueryPanel1 extends JPanel {
+public class ReportPanel1 extends JPanel {
 
     private  JLabel msisdnLable, serviceLable;
     private  JFormattedTextField msisdnTextFeild;
@@ -31,7 +31,7 @@ public class QueryPanel1 extends JPanel {
 
 
  
-    public QueryPanel1() throws IOException, SQLException{
+    public ReportPanel1() throws IOException, SQLException{
       
         setLayout(new GridLayout(18, 0,15,5));
         msisdnLable = new JLabel("MSISDN");

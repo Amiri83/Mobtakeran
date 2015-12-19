@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 
-public class QueryPanel0 extends JPanel {
+public class ReportPanel0 extends JPanel {
 
     private  JLabel msisdnLable;
     private  JFormattedTextField msisdnTextFeild;
@@ -22,7 +22,7 @@ public class QueryPanel0 extends JPanel {
 
   
 
-    public QueryPanel0(){
+    public ReportPanel0(){
         initComponents();
     }
           

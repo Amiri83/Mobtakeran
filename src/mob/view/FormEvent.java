@@ -2,6 +2,9 @@ package mob.view;
 
 import java.util.EventObject;
 
+/* custome Event lsitenet to let Mainfram know which QueryReport Shoub be put 
+    to FormPanel
+*/
 public class FormEvent extends EventObject{
     
    private int comboBoxIndex,serviceList;

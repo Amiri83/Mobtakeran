@@ -13,13 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+// FormPanel used to  display different Report panles 
+
 public class FormPanel extends JPanel{
     
     private  JComboBox comboBox;
     private  JLabel    reportlable;
     private int comboBoxIndex ;
     private FormListener formListener;
-            
+     
     public FormPanel(){
         initComponent();
      
@@ -87,7 +89,7 @@ public class FormPanel extends JPanel{
         
  
  
-            public void initComponent(){
+      public void initComponent(){
             
         comboBox = new JComboBox();
         reportlable = new JLabel("Select Report:");
@@ -108,21 +110,19 @@ public class FormPanel extends JPanel{
         reportList.addElement("Service List");
         reportList.addElement("Service Hsitory");
         reportList.addElement("Service SubHistory");
-  /*    reportList.addElement("Report3");
-        reportList.addElement("Report4");  */
         comboBox.setModel(reportList);
         comboBox.setSelectedIndex(0);
-         comboBox.addActionListener(new ActionListener() {
+        comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
               comboBoxIndex =  comboBox.getSelectedIndex();
 
-            //  querySelector(comboBoxIndex =  comboBox.getSelectedIndex()); 
+
                
                FormEvent ev = new FormEvent(this,comboBoxIndex);
-               if (formListener != null){
-                   formListener.fromEventoccurred(ev);
+                 if (formListener != null){
+                     formListener.fromEventoccurred(ev);
                }
                
             }
@@ -133,7 +133,7 @@ public class FormPanel extends JPanel{
             }
 
               public void setFormListener (FormListener listener){
-              this.formListener = listener;  
+                   this.formListener = listener;  
                
             }
     

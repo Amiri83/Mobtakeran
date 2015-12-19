@@ -2,6 +2,8 @@ package mob.model;
 
 import java.io.Serializable;
 
+
+// Databse model for information to be displayed 
 public class Information implements Serializable{  
     public static int count = 0;
     
@@ -101,6 +103,8 @@ public class Information implements Serializable{
         this.count = count;
     }
    
+    
+    // this is used for CSV output to convert All numbers to String 
      public String toString() {
 
 	        return " id: " + id + ", Msisdn= " + msisdn

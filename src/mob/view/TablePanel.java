@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 
-
+/* creats empty Jtabale to displaye data*/
 
 public class TablePanel extends JPanel{
     

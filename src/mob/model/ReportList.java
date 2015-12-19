@@ -3,7 +3,11 @@
 package mob.model;
 public class ReportList {
   
+    // Data model used to exctarct combox Items from DB
+    
     private String serviceName,serviceCode,reportID;
+    
+    
     
     public ReportList(String serviceName , String serviceCode ){
     

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    private Information info;
+    private Information info;          
     private ArrayList<Information> infoArrayList; 
     private MainFrame mainFrame;
     private String msisdn;
@@ -25,7 +25,14 @@ public class Controller {
     private ArrayList<ReportList> reportListArray;  
     
 
- 
+    /* 
+    
+       Controller method Constructor , in addintion to get view(mainFarme) and 
+       Model (Information) objects it will create Database instance 
+       used to connect and query Db  and an ArrayList of model get and store
+       model info .
+    
+    */
     public Controller(Information info,MainFrame mainFrame ) throws IOException, SQLException{
         
       
@@ -37,7 +44,15 @@ public class Controller {
       
     }
     
- 
+    /*
+    
+    main control function 
+    we do it in 3 setps based on Action event object we already add to reports
+    (QueryPanel1,QueryPanel0)
+    1- check validtiy of data based on selected report
+    2- set data in ArrayList
+    3- Dispaly Array List in Jtable 
+    */
    
     public void contol ()  {
         
@@ -61,12 +76,14 @@ public class Controller {
               }
         };           
               
+   // here we add action listener to QueryPanels in view           
      mainFrame.getQueryPanel0().getQuerybtn().addActionListener(actionListener);
      mainFrame.getQueryPanel1().getQuerybtn().addActionListener(actionListener);
  
     
     }
     
+    /* Determines wich report is selected to do validation based on selected report*/
     private void validateData() throws SQLException, IOException{
        reportNumber =mainFrame.getComboxIndex();
        switch (reportNumber){
@@ -79,6 +96,8 @@ public class Controller {
        }
     }
     
+    
+    /*first report validation*/
     private void validate0() throws SQLException, IOException{
      
       if ((mainFrame.getQueryPanel0().getMsisdn()).length() < 12){
@@ -98,7 +117,7 @@ public class Controller {
       
     }
       
-       
+      /*second report validation*/
     private void validate1() throws SQLException, IOException{
               
       if ((mainFrame.getQueryPanel1().getMsisdn()).length() < 12){
@@ -125,6 +144,7 @@ public class Controller {
       
     } 
   
+       /* Fill array list*/
         private void setData() throws SQLException{
            if (msisdn != null) {
                infoArrayList = database.getInfoArrayList();
@@ -132,13 +152,24 @@ public class Controller {
            }
         }
 
+        /*
+         Displays data in Jtabale
+         
+        */
+        
         private void displayData(){
           mainFrame.getTablePanel().getTableModel().setData(infoArrayList);
           mainFrame.getTablePanel().refresh();
         
         }
 
+       
         
+        /*
+        
+        This will fill combo box valus used in QueryPanel1 
+        
+        */
 
         private void fillComboBox() throws SQLException, IOException{
     

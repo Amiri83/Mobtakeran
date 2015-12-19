@@ -9,6 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import mob.model.Information;
 
+
+/* Displays data on TablePanel also will used to export data */
+
 public class TableModel extends AbstractTableModel{
 
   	//Delimiter used in CSV file
