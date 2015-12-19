@@ -21,38 +21,27 @@ public class App {
     public static void main(String[] args)  throws Exception{
        
         SwingUtilities.invokeLater(new Runnable() {
-          MainFrame mainframe = null; 
+          
+//           inner Class local variables 
+           MainFrame  mainframe   = null; 
+           Controller controller  = null;   
           
             @Override
             public void run() {
-             
+                  
                 try {
-                    mainframe = new  MainFrame(); // <<-- View  Object
-                } catch (IOException ex) {
-              
-                  JOptionPane.showMessageDialog(null,ex.getMessage(),
-                          "IO ERROR",JOptionPane.ERROR_MESSAGE );
-                } catch (SQLException ex) {
-          
-                   JOptionPane.showMessageDialog(null,ex.getMessage(),
-                           "SQL ERROR",JOptionPane.ERROR_MESSAGE );
-              }
-                Information info = new Information();  // <<-- Model Object
-                Controller controller = null;         //  <<-- Controller Object
-              try {
-                  controller = new Controller(info,mainframe);     // <<-- passing object
-              } catch (IOException ex) {
-               
-                    JOptionPane.showMessageDialog(null,ex.getMessage(),
-                          "IO ERROR",JOptionPane.ERROR_MESSAGE );
-                 
-              } catch (SQLException ex) {
-             
-                 JOptionPane.showMessageDialog(null,ex.getMessage(),
-                         "SQL ERROR",JOptionPane.ERROR_MESSAGE );
-              }
-                
-              controller.contol();  // <<-- Controller perfomes controll
+                    
+                  
+                    Information info = new Information();
+                    mainframe = new  MainFrame();
+                    controller = new Controller(info,mainframe);   
+                    controller.contol(); 
+                    
+                } catch (IOException | SQLException ex) {
+                JOptionPane.showMessageDialog(null,ex.getMessage(),
+                                "ERROR",JOptionPane.ERROR_MESSAGE );
+                   
+                }
 
             }
         });

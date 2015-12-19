@@ -3,7 +3,7 @@ package mob.controller;
 
 import mob.model.Database;
 import mob.view.MainFrame;
-import mob.model.ReportList;
+import mob.model.ComboBoxList;
 import mob.model.Information;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +22,7 @@ public class Controller {
     private ActionListener actionListener;
     private String SubStatus;
     private Database database;
-    private ArrayList<ReportList> reportListArray;  
+    private ArrayList<ComboBoxList> reportListArray;  
     
 
     /* 
@@ -46,9 +46,7 @@ public class Controller {
     
     /*
     
-    main control function 
-    we do it in 3 setps based on Action event object we already add to reports
-    (QueryPanel1,QueryPanel0)
+    main control is done in 3 steps 
     1- check validtiy of data based on selected report
     2- set data in ArrayList
     3- Dispaly Array List in Jtable 
@@ -56,6 +54,9 @@ public class Controller {
    
     public void contol ()  {
         
+           
+
+     
               actionListener = new ActionListener() {
               @Override
               public void actionPerformed(ActionEvent actionEvent) {
@@ -64,26 +65,24 @@ public class Controller {
                     
                       validateData();
                       setData();
-                   
+                      displayData();
                       
-                  } catch (SQLException ex) {
+                  } catch (SQLException  | IOException ex) {
                       
-                      System.out.println("Sql Error "+ ex.getMessage());
-                   } catch (IOException ex) {
-                      System.out.println("IO Error "+ ex.getMessage());
-                  }
-                       displayData();
+                      System.out.println(" Error "+ ex.getMessage());
+                   }
+                      
               }
         };           
-              
-   // here we add action listener to QueryPanels in view           
-     mainFrame.getQueryPanel0().getQuerybtn().addActionListener(actionListener);
-     mainFrame.getQueryPanel1().getQuerybtn().addActionListener(actionListener);
+     
+     // here we add action listener to Reports in view              
+     mainFrame.getReport0().getQuerybtn().addActionListener(actionListener);
+     mainFrame.getReport1().getQuerybtn().addActionListener(actionListener);
  
     
     }
     
-    /* Determines wich report is selected to do validation based on selected report*/
+    /* Determines which report is selected to do validation */
     private void validateData() throws SQLException, IOException{
        reportNumber =mainFrame.getComboxIndex();
        switch (reportNumber){
@@ -100,14 +99,14 @@ public class Controller {
     /*first report validation*/
     private void validate0() throws SQLException, IOException{
      
-      if ((mainFrame.getQueryPanel0().getMsisdn()).length() < 12){
-          mainFrame.getQueryPanel0().setError();
+      if ((mainFrame.getReport0().getMsisdn()).length() < 12){
+          mainFrame.getReport0().setError();
           this.msisdn = null;
       } 
       else {
           
-          msisdn = mainFrame.getQueryPanel0().getMsisdn();
-          mainFrame.getQueryPanel0().setOK();
+          msisdn = mainFrame.getReport0().getMsisdn();
+          mainFrame.getReport0().setOK();
           info.resetCounter(1);
           infoArrayList.clear();
           mainFrame.getTablePanel().refresh();
@@ -120,8 +119,8 @@ public class Controller {
       /*second report validation*/
     private void validate1() throws SQLException, IOException{
               
-      if ((mainFrame.getQueryPanel1().getMsisdn()).length() < 12){
-           mainFrame.getQueryPanel1().setError();
+      if ((mainFrame.getReport1().getMsisdn()).length() < 12){
+           mainFrame.getReport1().setError();
            msisdn = null;
           
       } 
@@ -129,11 +128,11 @@ public class Controller {
           
                    
          
-          ReportList[] reportList = new ReportList[reportListArray.size()];
+          ComboBoxList[] reportList = new ComboBoxList[reportListArray.size()];
           reportList = reportListArray.toArray(reportList);
-          ServiceCode = Integer.parseInt(reportList[mainFrame.getQueryPanel1().getServiceListCombobox().getSelectedIndex()].getServiceCode());
-          msisdn = mainFrame.getQueryPanel1().getMsisdn();
-          mainFrame.getQueryPanel1().setOK();
+          ServiceCode = Integer.parseInt(reportList[mainFrame.getReport1().getServiceListCombobox().getSelectedIndex()].getServiceCode());
+          msisdn = mainFrame.getReport1().getMsisdn();
+          mainFrame.getReport1().setOK();
           info.resetCounter(1);
           infoArrayList.clear();
           mainFrame.getTablePanel().refresh();
@@ -175,16 +174,16 @@ public class Controller {
     
         reportListArray = new ArrayList<>();
         database.getReportList( reportListArray );
-        ReportList[] reportList = new ReportList[reportListArray.size()];
+        ComboBoxList[] reportList = new ComboBoxList[reportListArray.size()];
         reportList = reportListArray.toArray(reportList);
      
-            for(ReportList r : reportList){
+            for(ComboBoxList r : reportList){
             
-                mainFrame.getQueryPanel1().getServiceListCombobox().addItem(r.getServiceName());
+                mainFrame.getReport1().getServiceListCombobox().addItem(r.getServiceName());
                 
                  }
             
-                 mainFrame.getQueryPanel1().getServiceListCombobox().setSelectedIndex(0);
+                 mainFrame.getReport1().getServiceListCombobox().setSelectedIndex(0);
           
         
         }

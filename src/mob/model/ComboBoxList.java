@@ -1,15 +1,15 @@
 
 
 package mob.model;
-public class ReportList {
+public class ComboBoxList {
   
-    // Data model used to exctarct combox Items from DB
+ // Data model used to exctarct combox Items from DB
     
     private String serviceName,serviceCode,reportID;
     
     
     
-    public ReportList(String serviceName , String serviceCode ){
+    public ComboBoxList(String serviceName , String serviceCode ){
     
        this.serviceName = serviceName;
        this.serviceCode = serviceCode;

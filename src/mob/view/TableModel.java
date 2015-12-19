@@ -1,5 +1,6 @@
 package mob.view;
 
+import java.awt.HeadlessException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,15 +15,14 @@ import mob.model.Information;
 
 public class TableModel extends AbstractTableModel{
 
-  	//Delimiter used in CSV file
+    //Delimiter used in CSV file
     private static final String COMMA_DELIMITER = ",";
+    //line Seperator used in CSV file
     private static final String NEW_LINE_SEPARATOR = "\n";
-  
-
-	//CSV file header
+    //CSV file header
     private static final String FILE_HEADER = "ID,Msisdn,Sevice Name,State,"+
                                     " Membership_Date,Unsubscribe_Date";
-        
+     //CSV file content
      private final String[] colNames ={"ID","Msisdn" , "Sevice Name", "State" 
                                 ,"Membership Date", "Unsubscribe Date"};
      private ArrayList <Information> db;
@@ -31,32 +31,33 @@ public class TableModel extends AbstractTableModel{
      // number of arrayList rows
      private int dbSize;
   
-       public void setData(ArrayList<Information> db){
+     
+     public void setData(ArrayList<Information> db){
         this.db = db;
            dbSize = db.size(); 
          
          
     }
    
-     
+    // get  Rowcount 
     @Override
     public int getRowCount() {
         return dbSize;
        
     }
-
+  
+    // get  ColumnNames 
     @Override
     public String getColumnName (int column){
         return colNames[column];
     }
-    
+    // get Column Count
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
     // displayes data after event fireTableEvent occures
-   
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
@@ -81,7 +82,7 @@ public class TableModel extends AbstractTableModel{
 
     }
 
-    
+    //Saves To Casv 
      public void savetoFile(String fileName) {
      
      
@@ -119,18 +120,20 @@ public class TableModel extends AbstractTableModel{
                               "File Suscessfully Saved to "+ fileName , 
                               "Save Sucssess", JOptionPane.INFORMATION_MESSAGE);
 			
-		} catch (Exception e) {
-			System.out.println("Error in CsvFileWriter !!! "+e.getMessage() );
-			e.printStackTrace();
+		} catch (IOException | HeadlessException e) {
+			                        
+                          JOptionPane.showMessageDialog(null, 
+                              "Error in CsvFileWriter "+ e.getMessage() , 
+                              "Save Sucssess", JOptionPane.ERROR_MESSAGE);
 		} finally {
 			
 			try {
 				fileWriter.flush();
 				fileWriter.close();
 			} catch (IOException e) {
-				System.out.println("Error while flushing/closing fileWriter !!! "+
-                                        e.getMessage());
-                                e.printStackTrace();
+				  JOptionPane.showMessageDialog(null, 
+                              "Error in CsvFileWriter "+ e.getMessage() , 
+                              "Save Sucssess", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}

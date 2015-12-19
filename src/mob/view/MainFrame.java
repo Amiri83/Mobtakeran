@@ -22,19 +22,19 @@ import javax.swing.KeyStroke;
 
 
 
-// Main View controller , All view componenets  comunications will controll here 
+// Main View controller , All componets in view will be comunicate together from here
 
 public class MainFrame extends JFrame  {
     
 
-    private  FormPanel formPanel;
+    private  ReportPanel reportPanel;
     private  int comboxIndex ;
     private  JFileChooser fileChooser;
-    private  ReportPanel0 queryPanel0;
-    private  ReportPanel1 queryPanel1 ;
-    private  ReportPanel2 queryPanel2 ;
+    private  Report0 report0;
+    private  Report1 report1 ;
+    private  Report2 report2 ;
     private  TablePanel  tablePanel;
-    private  InfoFileFilter filter;
+    private  CSVFileFilter filter;
   
 
             
@@ -44,8 +44,8 @@ public class MainFrame extends JFrame  {
 
     }
     
-  /////////////////// Menu Bar ////////////////////////////////////////////////
-    
+
+// JMenuBar Creation    
         private JMenuBar createMenuBar (){
         
      
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame  {
             hideForm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
               JCheckBoxMenuItem showHide = (JCheckBoxMenuItem)  ev.getSource();
-                formPanel.setVisible(!(showHide.isSelected()));
+                reportPanel.setVisible(!(showHide.isSelected()));
             
             }
         });
@@ -153,34 +153,33 @@ public class MainFrame extends JFrame  {
     public void initComponents() throws IOException, SQLException{ 
         
        setLayout    (new BorderLayout());
-   
-       formPanel   = new FormPanel();
-       queryPanel0 = new ReportPanel0();
+       reportPanel = new ReportPanel();
+       report0     = new Report0();
        fileChooser = new JFileChooser();
-       queryPanel0 = new ReportPanel0();
-       queryPanel1 = new ReportPanel1();
-       queryPanel2 = new ReportPanel2();
+       report0     = new Report0();
+       report1     = new Report1();
+       report2     = new Report2();
        tablePanel  = new TablePanel() ;
-       filter      = new InfoFileFilter();
+       filter      = new CSVFileFilter();
     
      
         setJMenuBar(createMenuBar());
         
     /////////////////////////// Form panel Listener ///////////////////////////    
       
-          formPanel.setFormListener(new FormListener(){
+          reportPanel.setFormListener(new ReportPanelListener(){
           @Override
-          public void fromEventoccurred(FormEvent e){
+          public void reportEventoccurred(ReportPanelEvent e){
                 setComboxIndex(e.getComboBoxIndex());
             switch(getComboxIndex()){
-                case 1: formPanel.setFramePanelLayout(getQueryPanel0());
+                case 1: reportPanel.setFramePanelLayout(getReport0());
                     break;
-                case 2: formPanel.setFramePanelLayout(getQueryPanel1());
+                case 2: reportPanel.setFramePanelLayout(getReport1());
                     break;
-                case 3: formPanel.setFramePanelLayout(getQueryPanel2());
+                case 3: reportPanel.setFramePanelLayout(getReport2());
                     break;
            
-                default: formPanel.setFramePanelLayout(getQueryPanel0());
+                default: reportPanel.setFramePanelLayout(getReport0());
             }
           }
       });
@@ -193,23 +192,23 @@ public class MainFrame extends JFrame  {
       setSize(1200,650);
       setLocation(100, 100);
       add(tablePanel,BorderLayout.CENTER);
-      add(formPanel,BorderLayout.WEST);
+      add(reportPanel,BorderLayout.WEST);
       setVisible(true);
         
         }
     
   /////////////////////// Setter And getters /////////////////////////////////  
     
-    public ReportPanel0 getQueryPanel0() {
-        return queryPanel0;
+    public Report0 getReport0() {
+        return report0;
     }
 
-    public ReportPanel1 getQueryPanel1() {
-        return queryPanel1;
+    public Report1 getReport1() {
+        return report1;
     }
 
-    public ReportPanel2 getQueryPanel2() {
-        return queryPanel2;
+    public Report2 getReport2() {
+        return report2;
     }
 
     public TablePanel getTablePanel (){

@@ -13,16 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-// FormPanel used to  display different Report panles 
+// FormPanel used to  display different Report panels 
 
-public class FormPanel extends JPanel{
+public class ReportPanel extends JPanel{
     
     private  JComboBox comboBox;
     private  JLabel    reportlable;
     private int comboBoxIndex ;
-    private FormListener formListener;
+    private ReportPanelListener formListener;
      
-    public FormPanel(){
+    public ReportPanel(){
         initComponent();
      
     }
@@ -120,9 +120,9 @@ public class FormPanel extends JPanel{
 
 
                
-               FormEvent ev = new FormEvent(this,comboBoxIndex);
+               ReportPanelEvent ev = new ReportPanelEvent(this,comboBoxIndex);
                  if (formListener != null){
-                     formListener.fromEventoccurred(ev);
+                     formListener.reportEventoccurred(ev);
                }
                
             }
@@ -132,7 +132,7 @@ public class FormPanel extends JPanel{
  
             }
 
-              public void setFormListener (FormListener listener){
+              public void setFormListener (ReportPanelListener listener){
                    this.formListener = listener;  
                
             }

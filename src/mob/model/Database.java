@@ -18,15 +18,16 @@ import javax.swing.JOptionPane;
 
 
 public class Database {
+  
     
   private String url , username ,password ,dbdriver ,sql , ServiceName , 
                  MembershipDate , UnSubscribeDate , Msisdn ,SubStatus,
                   reportServiceName , ServiceCode  ;
    
   
-  private ReportList reportList;
+  private ComboBoxList comboBoxList;
   private ArrayList<Information> infoArrayList;
-  private ArrayList<ReportList> reportListArray;
+  private ArrayList<ComboBoxList> reportListArray;
   private static final String DB_FILEـNAME="mob_db.conf";
   private static final String DB_FILE_LOCATION="./";
 
@@ -40,7 +41,7 @@ public class Database {
   
    }
   
-  /////////////////// read db info /////////////////////////////////////
+ // Reads Db info 
   private void getDatabaseInfo() throws IOException {
         
         Properties props = new Properties();
@@ -67,7 +68,7 @@ public class Database {
             }
   
   
-
+    // Querys Report1
     public void queryReport1(String  msisdn, int  ServiceCode ,  Information info 
                               ,ArrayList<Information> infoArrayList
                             ) throws SQLException, IOException {
@@ -108,6 +109,8 @@ public class Database {
         }
     }
 
+    
+    // Querys Report0
     public void queryReport0(String  msisdn , Information info ,
                              ArrayList<Information> infoArrayList) throws SQLException, IOException {
         
@@ -139,7 +142,9 @@ public class Database {
         }
     }
     
-    public void  getReportList(ArrayList<ReportList> reportListArray) throws SQLException ,IOException{
+    //Gets content of Combox for Report1 form view repot_v in DB
+    
+    public void  getReportList(ArrayList<ComboBoxList> reportListArray) throws SQLException ,IOException{
                        
                       this.reportListArray = reportListArray;
                       
@@ -152,8 +157,8 @@ public class Database {
                         
                         setReportServiceName(rs.getString("servicename"));
                         setServiceCode(rs.getString("servicecode"));
-                         reportList = new ReportList(getReportServiceName(), getServiceCode());
-                         getReportListArray().add(reportList);   
+                         comboBoxList = new ComboBoxList(getReportServiceName(), getServiceCode());
+                         getReportListArray().add(comboBoxList);   
                        //  System.out.println("service name " + getReportServiceName()+ getServiceCode() );
                     }
                 
@@ -246,7 +251,7 @@ public class Database {
         this.ServiceCode = ServiceCode;
     }
 
-    public ArrayList<ReportList> getReportListArray() {
+    public ArrayList<ComboBoxList> getReportListArray() {
         return reportListArray;
     }
 

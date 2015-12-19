@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class ReportPanel2 extends JPanel{
+public class Report2 extends JPanel{
    
-    public ReportPanel2(){
+    public Report2(){
       
         
 
