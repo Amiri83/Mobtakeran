@@ -13,7 +13,7 @@ public class CSVFileFilter extends FileFilter  {
     public boolean accept(File file) {
         String name = file.getName();
         
-        String extension = Utiles.getFileExtension(name);
+        String extension = CVSFileUtiles.getFileExtension(name);
         
         if (extension == null) {
         return false;

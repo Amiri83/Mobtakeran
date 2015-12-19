@@ -2,7 +2,7 @@
 package mob.view;
 
 // used by filefilter class 
-public class Utiles {
+public class CVSFileUtiles {
 
     public static String getFileExtension (String name){
     
