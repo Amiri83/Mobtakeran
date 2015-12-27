@@ -20,11 +20,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+// Main View controller , 
+// All componets in view will be commuincate together from here
 
+public final class MainFrame extends JFrame  {
 
-// Main View controller , All componets in view will be comunicate together from here
-
-public class MainFrame extends JFrame  {
+    private static final long serialVersionUID = 1L;
     
 
     private  ReportPanel reportPanel;
@@ -64,7 +65,8 @@ public class MainFrame extends JFrame  {
         viewMenu.add(hideForm);
         menuBar.add(fileMenu);
         menuBar.add (viewMenu);
- 
+        
+        //Set Mnominics
         fileMenu.setMnemonic(KeyEvent.VK_F);
         viewMenu.setMnemonic(KeyEvent.VK_V);
         exitItem.setMnemonic(KeyEvent.VK_X);
@@ -72,14 +74,15 @@ public class MainFrame extends JFrame  {
         hideForm.setMnemonic(KeyEvent.VK_S);
         
        
-        //Set Exit Accelator ////// you can set accleator only to Jmenu
+        //Set Exit Accelator  
         exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
                                 ActionEvent.CTRL_MASK));
+        //Set hide Form Accelator  
         hideForm.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
                                 ActionEvent.CTRL_MASK));
         
-        ///// action listener for reprotList ///////////////////
-        ///////// exit /////////////////////////
+      
+     // Exit Item is selected  
         exitItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,7 +98,7 @@ public class MainFrame extends JFrame  {
         });
         
  
-     /////////////////////////////// Hide Form ////////////////////////////////
+     // Hide Form 
         
             hideForm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -106,7 +109,7 @@ public class MainFrame extends JFrame  {
         });
           
   
-   //////////////////////////////////////// Export File ///////////////////////
+   // Export File Gui
             
             fileChooser.addChoosableFileFilter(filter);
             fileChooser.setFileFilter(filter);
@@ -128,7 +131,7 @@ public class MainFrame extends JFrame  {
          }
        
       
-     //////////////////// window listener to set exit button //////////////////  
+   // window listener to set exit button 
         
     WindowListener exitListener = new WindowAdapter() {
 
@@ -144,12 +147,8 @@ public class MainFrame extends JFrame  {
     }
     };
         
-    
-     ///////////////////////////////////////////////////////////////////////
-    
-    
-     ///////////////////// init componets /////////////////////////////////// 
-        
+
+     // init componets 
     public void initComponents() throws IOException, SQLException{ 
         
        setLayout    (new BorderLayout());
@@ -165,7 +164,7 @@ public class MainFrame extends JFrame  {
      
         setJMenuBar(createMenuBar());
         
-    /////////////////////////// Form panel Listener ///////////////////////////    
+  // reportPanel Listener used to find which report should be send to ReportPanel
       
           reportPanel.setFormListener(new ReportPanelListener(){
           @Override
@@ -185,7 +184,7 @@ public class MainFrame extends JFrame  {
       });
    
          
-    /////////////////////// Windows listener /////////////////////////////////
+ // Setting main componet on Main Fram
           
       addWindowListener(exitListener);     
       setDefaultCloseOperation(MainFrame.DO_NOTHING_ON_CLOSE);
@@ -196,8 +195,7 @@ public class MainFrame extends JFrame  {
       setVisible(true);
         
         }
-    
-  /////////////////////// Setter And getters /////////////////////////////////  
+
     
     public Report0 getReport0() {
         return report0;

@@ -18,7 +18,7 @@ import javax.swing.border.Border;
 
 
 
-
+//Report1
 public class Report1 extends JPanel {
 
     private  JLabel msisdnLable, serviceLable;
@@ -27,11 +27,15 @@ public class Report1 extends JPanel {
     private  JComboBox serviceListCombobox;
 
 
+    public Report1() throws IOException, SQLException{
     
+          initComponents();
+    
+    }
 
 
  
-    public Report1() throws IOException, SQLException{
+    public void initComponents() {
       
         setLayout(new GridLayout(18, 0,15,5));
         msisdnLable = new JLabel("MSISDN");

@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-// FormPanel used to  display different Report panels 
+// Panel used to show different Report
 
 public class ReportPanel extends JPanel{
+
+    private static final long serialVersionUID = 112L;
     
     private  JComboBox comboBox;
     private  JLabel    reportlable;

@@ -34,14 +34,14 @@ public class Database {
   
   
   
-  //////////////////////// create instance with Db info ///////////////////////
+ // create instance with Db info 
   public Database() throws IOException {
 
   getDatabaseInfo();
   
    }
   
- // Reads Db info 
+ // Reads Db connection info form file 
   private void getDatabaseInfo() throws IOException {
         
         Properties props = new Properties();
@@ -143,8 +143,7 @@ public class Database {
     }
     
     //Gets content of Combox for Report1 form view repot_v in DB
-    
-    public void  getReportList(ArrayList<ComboBoxList> reportListArray) throws SQLException ,IOException{
+     public void  getComboboxList(ArrayList<ComboBoxList> reportListArray) throws SQLException ,IOException{
                        
                       this.reportListArray = reportListArray;
                       

@@ -22,17 +22,15 @@ public class Controller {
     private ActionListener actionListener;
     private String SubStatus;
     private Database database;
-    private ArrayList<ComboBoxList> reportListArray;  
+    private ArrayList<ComboBoxList> comboListArray;  
     
 
     /* 
-    
-       Controller method Constructor , in addintion to get view(mainFarme) and 
-       Model (Information) objects it will create Database instance 
-       used to connect and query Db  and an ArrayList of model get and store
-       model info .
-    
-    */
+      * This Controller method Constructor , in addintion to get view(mainFarme) and 
+      * Model (Information) objects it will create Database instance as well ,
+      * used to connect and query Db  and an ArrayList of model get and store
+      * model info .    
+      */
     public Controller(Information info,MainFrame mainFrame ) throws IOException, SQLException{
         
       
@@ -82,7 +80,7 @@ public class Controller {
     
     }
     
-    /* Determines which report is selected to do validation */
+    //Determines which report is selected to do validation
     private void validateData() throws SQLException, IOException{
        reportNumber =mainFrame.getComboxIndex();
        switch (reportNumber){
@@ -96,7 +94,7 @@ public class Controller {
     }
     
     
-    /*first report validation*/
+    //first report validation
     private void validate0() throws SQLException, IOException{
      
       if ((mainFrame.getReport0().getMsisdn()).length() < 12){
@@ -104,19 +102,24 @@ public class Controller {
           this.msisdn = null;
       } 
       else {
-          
+          // reads MSISDN form Report 0
           msisdn = mainFrame.getReport0().getMsisdn();
+          // Clear TextFeild on Report 0
           mainFrame.getReport0().setOK();
+          // restest counter on info 
           info.resetCounter(1);
+          // clears Existing data on ArrayList
           infoArrayList.clear();
+          // displays empty ArrayList on Jtable
           mainFrame.getTablePanel().refresh();
+          // Send refrence of array list and info to Databse to be filled after query
           database.queryReport0(msisdn , info,infoArrayList);
           
       }
       
     }
       
-      /*second report validation*/
+      //second report validation
     private void validate1() throws SQLException, IOException{
               
       if ((mainFrame.getReport1().getMsisdn()).length() < 12){
@@ -128,14 +131,22 @@ public class Controller {
           
                    
          
-          ComboBoxList[] reportList = new ComboBoxList[reportListArray.size()];
-          reportList = reportListArray.toArray(reportList);
-          ServiceCode = Integer.parseInt(reportList[mainFrame.getReport1().getServiceListCombobox().getSelectedIndex()].getServiceCode());
+          ComboBoxList[] comboList = new ComboBoxList[comboListArray.size()];
+          //covnverts Combobox array list to array
+          comboList = comboListArray.toArray(comboList);
+          // get Service code form Combo box array based on selected combo index on report 1
+          ServiceCode = Integer.parseInt(comboList[mainFrame.getReport1().getServiceListCombobox().getSelectedIndex()].getServiceCode());
+          //reads msisdn from report 1
           msisdn = mainFrame.getReport1().getMsisdn();
+          // Clear Textbox on report 1
           mainFrame.getReport1().setOK();
+          // restest counter on info 
           info.resetCounter(1);
+          // clear array list for existing data
           infoArrayList.clear();
+          // displays emptys ArrayList on Jtable
           mainFrame.getTablePanel().refresh();
+          //Passes  info and ArrayList refrence to Database to be filled there 
           database.queryReport1(msisdn,ServiceCode,info,infoArrayList);
          
             
@@ -143,7 +154,7 @@ public class Controller {
       
     } 
   
-       /* Fill array list*/
+       // fills array list
         private void setData() throws SQLException{
            if (msisdn != null) {
                infoArrayList = database.getInfoArrayList();
@@ -151,31 +162,23 @@ public class Controller {
            }
         }
 
-        /*
-         Displays data in Jtabale
-         
-        */
-        
+        //Displays data in Jtabale
         private void displayData(){
+          //passes the refrence of arrayList That is filled in Database class to Jtable 
           mainFrame.getTablePanel().getTableModel().setData(infoArrayList);
+          //Calls trigger on Table model to display Data 
           mainFrame.getTablePanel().refresh();
         
         }
 
-       
-        
-        /*
-        
-        This will fill combo box valus used in QueryPanel1 
-        
-        */
-
+      
+        //   This will fill combo box valus used in report1 
         private void fillComboBox() throws SQLException, IOException{
     
-        reportListArray = new ArrayList<>();
-        database.getReportList( reportListArray );
-        ComboBoxList[] reportList = new ComboBoxList[reportListArray.size()];
-        reportList = reportListArray.toArray(reportList);
+        comboListArray = new ArrayList<>();
+        database.getComboboxList( comboListArray );
+        ComboBoxList[] reportList = new ComboBoxList[comboListArray.size()];
+        reportList = comboListArray.toArray(reportList);
      
             for(ComboBoxList r : reportList){
             

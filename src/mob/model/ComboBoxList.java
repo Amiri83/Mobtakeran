@@ -5,7 +5,7 @@ public class ComboBoxList {
   
  // Data model used to exctarct combox Items from DB
     
-    private String serviceName,serviceCode,reportID;
+    private String serviceName,serviceCode;
     
     
     
@@ -13,24 +13,24 @@ public class ComboBoxList {
     
        this.serviceName = serviceName;
        this.serviceCode = serviceCode;
-       this.reportID = reportID;
+      
     
     }
 
   
-
+    //get ServiceName for combo
     public String getServiceName() {
         return serviceName;
     }
-
+   //set ServiceName  for combo
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
-
+    //get ServiceCode for combo
     public String getServiceCode() {
         return serviceCode;
     }
-
+    //set ServiceCode for combo 
     public void setServiceCode(String serviceCode) {
         this.serviceCode = serviceCode;
     }

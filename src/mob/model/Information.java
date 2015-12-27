@@ -100,11 +100,12 @@ public class Information implements Serializable{
     
     public void resetCounter(int count){
     
-        this.count = count;
+        Information.count = count;
     }
    
     
     // this is used for CSV output to convert All numbers to String 
+    @Override
      public String toString() {
 
 	        return " id: " + id + ", Msisdn= " + msisdn

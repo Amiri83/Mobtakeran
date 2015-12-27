@@ -36,6 +36,7 @@ public class App {
                     mainframe = new  MainFrame();
                     controller = new Controller(info,mainframe);   
                     controller.contol(); 
+
                     
                 } catch (IOException | SQLException ex) {
                 JOptionPane.showMessageDialog(null,ex.getMessage(),
